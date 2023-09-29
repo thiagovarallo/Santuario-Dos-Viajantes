@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary_color: #4EC9FD
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+}
+
+.header-container {
+    max-width: 100vw;
+    max-height: 11vh;
+    background: rgb(78,201,253);
+    background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);  
+    display: flex;
+    justify-content: stretch;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+}
+
+.menu_burg {
+    width: 30%;
+    height: 10vh;
+    display: flex;
+}
+
+.menu_burg img {
+    width: 2rem;
+    
+}
+
+.img_logo {
+    width: 40%;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.img_logo img {
+    width: 4rem;
+}
+
+.settings_user {
+    width: 30%;
+    height: 10vh;
+    display: flex;
+    justify-content: end;
+    gap: 0.3rem;
+}
+
+.settings_user img {
+    width: 1.7rem;
+}
+
+.slideBar {
+    width: 75vw;
+    height: 100vh;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    display: none;
+    z-index: 10;
+}
+
+.slideBar::after {
+    content: '';
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+}
+
+.nav-desktop {
+    display: none;
+}
+
+@media (min-width : 1200px) {
+
+    .header-container {
+        background: rgb(60,134,230);
+background: radial-gradient(circle, rgba(60,134,230,1) 4%, rgba(78,201,253,1) 100%);
+    }
+
+    .img_logo img {
+        width: 5rem;
+    }
+
+    .img_logo {
+        width: 30%;
+        justify-content: start;
+    }
+
+    .menu_burg {
+        display: none;
+        
+    }
+
+    .settings_user img {
+        width: 2.5rem;
+    }
+
+    .nav-desktop {
+        display: block;
+        width: 40%;
+    }
+
+    .nav-desktop nav ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        height: 10vh;
+    }
+    .nav-desktop nav ul li a {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.4rem;
+        padding: 4vh 17px;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+        transition: 3ms;
+    }
+    .nav-desktop nav ul li a:hover {
+        background-color: #23bdffd5;
+    }
+}
