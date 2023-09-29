@@ -61,6 +61,19 @@
     font-weight: 400;
 }
 
+.container_description {
+    max-width: 100vw;
+    height: 20vh;
+    padding: 1rem 1rem;
+}
+
+.description {
+    width: 80%;
+    height: 100%;
+    background-color: bisque;
+    margin: 0 auto;
+}
+
 @media (min-width: 1200px) {
     .container_room {
         flex-direction: row;

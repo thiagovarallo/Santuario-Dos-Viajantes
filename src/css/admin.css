@@ -2,13 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
 }
+
+
+
+
+
 
 body {
     max-width: 100vw;
@@ -17,9 +21,14 @@ body {
     background-color: #f2f1f2;
 }
 
-#mobile_menu {
+/* mobile menu */
+
+.mobile_menu {
     display: none;
 }
+
+
+/*nav desktop */
 
 .pc_menu {
     min-width: 10%;
@@ -154,6 +163,18 @@ main {
 /* Responsivo */
 
 @media(max-width: 800px){
+    body {
+        flex-direction: column;
+    }
+
+    .mobile_menu {
+        display: block;
+        width: 100vw;
+        height: 10vh;
+        background-color: black;
+    }
+    
+
     main {
         width: 100%;
         min-height: 100vh;
