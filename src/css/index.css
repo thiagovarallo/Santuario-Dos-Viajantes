@@ -221,7 +221,7 @@
     .column_service {
         margin: 0 auto;
         max-width: 50%;
-        min-height: 70vh;
+        min-height: 0;
     }
 }
 
@@ -243,8 +243,9 @@
         height: 100%;
     }
 
-    .box_service_img {
-        max-width: 200px;
+    #box_service_img {
+        min-width: 400px;
+        max-width: 600px;
     }
 }
 
@@ -252,8 +253,12 @@
     .column_service {
         margin: 0 auto;
         max-width: 50%;
-        min-height: 30vh;
-        max-height: 35vh;
+        min-height: 50vh;
         flex-direction: row;
+    }
+
+    #box_service_img {
+        min-width: 560px;
+        max-width: 700px;
     }
 }
