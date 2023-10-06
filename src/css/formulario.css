@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 100vw;
+    min-height: 100vh;
+}
+
+main {
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.title_form h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (min-width : 1200px) {
+    main {
+        width: 60%;
+    }
+}
