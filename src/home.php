@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="icon" href="../img/Group-2.svg">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="../src/css/index.css">
+    <link rel="stylesheet" href="../src/css/navbar.css">
+    <link rel="stylesheet" href="../src/css/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body>
-    <?php include_once './components/navbar.html' ?>
-    <?php include_once './components/carrossel.html' ?>
+    <?php include_once 'src/components/navbar.html' ?>
+    <?php include_once 'src/components/carrossel.html' ?>
 
     <section class="container_room">
         <div class="column_title">
@@ -116,7 +119,7 @@
         </div>
     </section>
 
-    <?php include_once './components/footer.html' ?>
+    <?php include_once './src/components/footer.html' ?>
 
 </body>
 </html>
