@@ -1,5 +1,22 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include_once "../../connection.php";
+
+    $sql = "INSERT INTO type_room (name_room, description, price) VALUES (:name_room, :description, :price)";
+
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(":name_room", $_POST["name_room"]); // Correção aqui
+    $statement->bindValue(":description", $_POST["description_room"]);
+    $statement->bindValue(":price", intval($_POST["price_room"]));
+    
+    $statement->execute();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,75 +28,41 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <script src="../js/navbar.js" defer></script>
 </head>
+
 <body>
     <?php include_once '../components/navbar.html' ?>
 
     <main>
-
         <div class="title_form">
-            <h2>Cadastrar tipo do quarto</h2>
+            <h2>Adiocionar um novo quarto</h2>
         </div>
 
-        <form class="row g-3 needs-validation" novalidate>
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">First name</label>
-                <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">Last name</label>
-                <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustomUsername" class="form-label">Username</label>
-                <div class="input-group has-validation">
-                <span class="input-group-text" id="inputGroupPrepend">@</span>
-                <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                <div class="invalid-feedback">
-                    Please choose a username.
-                </div>
-                </div>
+        <form class="row g-3 needs-validation" action="./typeRoom.php" method="post">
+            <div class="col-md-6">
+                <label for="name_room" class="form-label" require>Nome do quarto</label>
+                <input type="text" class="form-control" id="name_room" name="name_room" value="Mark" required>
             </div>
             <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">City</label>
-                <input type="text" class="form-control" id="validationCustom03" required>
-                <div class="invalid-feedback">
-                Please provide a valid city.
-                </div>
+                <label for="price_room" class="form-label" require>Preço</label>
+                <input type="number" step="0.01" class="form-control" id="price_room" name="price_room" placeholder="Ex: 5" required>
             </div>
-            <div class="col-md-3">
-                <label for="validationCustom04" class="form-label">State</label>
-                <select class="form-select" id="validationCustom04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-                </select>
-                <div class="invalid-feedback">
-                Please select a valid state.
-                </div>
+            <div class="mb-6">
+                <label for="description_room" class="form-label">Descrição do quarto</label>
+                <textarea class="form-control" id="description_room" name="description_room" rows="3"></textarea>
             </div>
-            <div class="col-md-3">
-                <label for="validationCustom05" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="validationCustom05" required>
-                <div class="invalid-feedback">
-                Please provide a valid zip.
-                </div>
+            <div class="col-md-6">
+                <label for="date_reservation_out" class="form-label">data de saida</label>
+                <input type="date" class="form-control" id="date_reservation_out" name="date_reservation_out" >
+            </div>
             </div>
             <div class="col-12">
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
-                    Agree to terms and conditions
-                </label>
-                <div class="invalid-feedback">
-                    You must agree before submitting.
-                </div>
-                </div>
+                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <button class="btn btn-danger" type="reset">Apagar tudo</button>
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-            </form>
-        </main>
+        </form>
+    </main>
 
-        <?php include_once '../components/footer.html' ?>
+    <?php include_once '../components/footer.html' ?>
 </body>
+
 </html>
