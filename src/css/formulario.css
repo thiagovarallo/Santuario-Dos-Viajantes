@@ -27,5 +27,6 @@ main {
 @media (min-width : 1200px) {
     main {
         width: 60%;
+        min-height: 58vh;
     }
 }
