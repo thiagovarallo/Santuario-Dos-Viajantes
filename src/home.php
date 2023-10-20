@@ -48,7 +48,7 @@ var_dump($query);
                         <div class="price_room">
                             <h3>R$<span> <?= $room["price"] ?></span></h3>
 
-                            <a href="">
+                            <a href="src/room.php?id=<?= $room["id"] ?>">
                                 <button class="action_room">Saber mais</button>
                             </a>
                         </div>

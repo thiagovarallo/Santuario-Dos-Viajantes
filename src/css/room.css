@@ -76,6 +76,8 @@
 
 @media (min-width: 1200px) {
     .container_room {
+        width: 90vw;
+        margin: 0 auto;
         flex-direction: row;
     }
 

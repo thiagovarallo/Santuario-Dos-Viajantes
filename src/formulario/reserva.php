@@ -1,6 +1,10 @@
 <?php
+  include_once "../../connection.php";
+  $queryGetRoom = $pdo->query("SELECT id, name_room from type_room;")->fetchAll(PDO::FETCH_ASSOC);
+
+  var_dump($queryGetRoom);
+
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once "../../connection.php";
 
     $sql = "INSERT INTO accommodation (id_user,type_room, date_reservation_entry, date_reservation_out, status) VALUES (1 ,:type_room, :date_reservation_entry, :date_reservation_out, 1)";
 
@@ -40,11 +44,15 @@
     <form class="row g-3 needs-validation" action="./reserva.php" method="post">
       <div class="col-md-6">
         <label for="id_user" class="form-label">Usuario</label>
-        <input type="text" class="form-control" id="id_user" name="id_user" value="Mark" required>
+        <input type="text" class="form-control" id="id_user" name="id_user" required>
       </div>
       <div class="col-md-6">
         <label for="num_room" class="form-label">Numero do quarto</label>
-        <input type="number" class="form-control" id="type_room" name="type_room" placeholder="Ex: 5" required>
+        <select class="form-select" aria-label="Default select example">
+          <?php foreach ( $queryGetRoom as $room ) : ?>
+            <option value="<?= $room["id"] ?>"> <?= $room["name_room"] ?> </option>
+          <?php endforeach ?>
+          </select>
       </div>
       <div class="col-md-6">
         <label for="date_reservation_entry" class="form-label">Data</label>
@@ -65,5 +73,4 @@
   <?php include_once '../components/footer.html' ?>
 
 </body>
-
 </html>
