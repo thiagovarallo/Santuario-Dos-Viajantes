@@ -6,6 +6,7 @@ function route($request_uri) {
         '/' => 'HomeController',
         '/about' => 'AboutController',
         '/contact' => 'ContactController',
+        '/admin/formulario/typequarto' => 'AdminFormTypeQuartoController'
     ];
 
     if (array_key_exists($request_uri, $routes)) {
@@ -39,6 +40,11 @@ class AboutController extends Controller {
 class ContactController extends Controller {
     public function __construct() {
         $this->render('contact');
+    }
+}
+class AdminFormTypeQuartoController extends Controller {
+    public function __construct() {
+        $this->render('typeRoom');
     }
 }
 

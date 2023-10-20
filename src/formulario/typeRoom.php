@@ -1,14 +1,13 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once "../../connection.php";
-
-    $sql = "INSERT INTO type_room (name_room, description, price) VALUES (:name_room, :description, :price)";
-
+    $sql = "INSERT INTO type_room (name_room, description, price) VALUES (:name_room, :description, :price);";
+    echo $_POST["imagem"];
     $statement = $pdo->prepare($sql);
-    $statement->bindValue(":name_room", $_POST["name_room"]); // Correção aqui
+    $statement->bindValue(":name_room", $_POST["name_room"]);
     $statement->bindValue(":description", $_POST["description_room"]);
     $statement->bindValue(":price", intval($_POST["price_room"]));
-    
+
     $statement->execute();
 }
 
@@ -26,9 +25,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/formulario.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/navbar.css">
-    <script src="../js/navbar.js" defer></script>
+    <script src="src/js/navbar.js" defer></script>
 </head>
-
 <body>
     <?php include_once '../components/navbar.html' ?>
 
@@ -40,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form class="row g-3 needs-validation" action="./typeRoom.php" method="post">
             <div class="col-md-6">
                 <label for="name_room" class="form-label" require>Nome do quarto</label>
-                <input type="text" class="form-control" id="name_room" name="name_room" value="Mark" required>
+                <input type="text" class="form-control" id="name_room" name="name_room" placeholder="Ex: luxo" required>
             </div>
             <div class="col-md-6">
                 <label for="price_room" class="form-label" require>Preço</label>
@@ -51,8 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <textarea class="form-control" id="description_room" name="description_room" rows="3"></textarea>
             </div>
             <div class="col-md-6">
-                <label for="date_reservation_out" class="form-label">data de saida</label>
-                <input type="date" class="form-control" id="date_reservation_out" name="date_reservation_out" >
+                <label for="image" class="form-label">Adicionar imagem do quarto</label>
+                <input class="form-control" type="file" id="imagem" name="imagem" multiple>
             </div>
             </div>
             <div class="col-12">
