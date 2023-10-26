@@ -20,26 +20,7 @@
             </div>    
             <div class="second-column">
                 <h2 class="title title-second">Criar uma conta</h2>
-                <div class="social-media">
-                    <ul class="list-social-media">
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-facebook-f"></i>        
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-google-plus-g"></i>
-                            </li>
-                        </a>
-                        <a class="link-social-media" href="#">
-                            <li class="item-social-media">
-                                <i class="fab fa-linkedin-in"></i>
-                            </li>
-                        </a>
-                    </ul>
-                </div><!-- social media -->
-                <p class="description description-second">ou use seu e-mail para se cadastrar:</p>
+                <p class="description description-second">Insere seus dados para realizar o cadastro:</p>
                 <form class="form">
                     <label class="label-input" for="">
                         <i class="far fa-user icon-modify"></i>

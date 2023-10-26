@@ -25,6 +25,8 @@ body {
 
 .mobile_menu {
     display: none;
+    background: rgb(78,201,253);
+    background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);    display: flex;
 }
 
 
@@ -171,7 +173,6 @@ main {
         display: block;
         width: 100vw;
         height: 10vh;
-        background-color: black;
     }
     
 

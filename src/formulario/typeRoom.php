@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement->bindValue(":price", intval($_POST["price_room"]));
 
     $statement->execute();
+    header("Location: /src/adminRoom.php");
 }
 
 ?>
