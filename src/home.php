@@ -3,7 +3,6 @@ include_once "./connection.php";
 
 $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($query);
 ?>
 
 <!DOCTYPE html>
