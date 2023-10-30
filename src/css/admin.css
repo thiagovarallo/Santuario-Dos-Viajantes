@@ -9,11 +9,6 @@
     text-decoration: none;
 }
 
-
-
-
-
-
 body {
     max-width: 100vw;
     min-height: 100vh;
@@ -51,6 +46,11 @@ body {
     color: white;
     font-family: 'Inter', Arial, Helvetica, sans-serif;
     padding: 0 0 0 10px;
+    transition: 2s;
+}
+
+.pc_menu ul a:hover {
+    transform: scale(1.1);
 }
 .pc_menu ul a li img {
     width: 20px;
@@ -158,6 +158,7 @@ main {
 
 .active {
     border-left: white 2px solid;
+    transform: scale(1.2);
 }
 
 

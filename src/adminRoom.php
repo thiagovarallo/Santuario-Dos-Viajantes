@@ -13,11 +13,38 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/admin.css">
+    <script src="./js/navbarAdmin.js" defer></script>
 </head>
 
 <body>
 
-    <?php include_once './components/navbarAdmin.html' ?>
+    <nav class="mobile_menu">
+
+    </nav>
+
+    <aside class="pc_menu">
+        <ul>
+            <a href="#">
+                <li><img src="../img/icons/home.svg"> Home</li>
+            </a>
+            <a href="/src/adminCliente.php">
+                <li><img src="../img/icons/user.svg"> usuarios</li>
+            </a>
+            <a href="/src/adminRoom.php">
+                <li class="active"><img src="../img/icons/bed.svg" id="bedRoom"> Quartos</li>
+            </a>
+            <a href="#">
+                <li><img src="../img/icons/home.svg"> Home</li>
+            </a>
+            <a href="#">
+                <li><img src="../img/icons/home.svg"> Home</li>
+            </a>
+
+        </ul>
+    </aside>
+
+
+
 
 
     <main>
@@ -62,7 +89,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                                     <a href="">
                                         <img src="../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
                                     </a>
-                                    <a href="/src/operationHttp/methodDelete.php?id=<?=$row["id"]?>&table=type_room">
+                                    <a href="/src/operationHttp/methodDelete.php?id=<?= $row["id"] ?>&table=type_room">
                                         <img src="../img/icons/trash.svg" alt="apagar usuario" style="width: 20px; object-fit: fill;">
                                     </a>
                                 </a>
