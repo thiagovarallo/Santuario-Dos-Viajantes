@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $statement->bindValue(":price", intval($_POST["price_room"]));
 
     $statement->execute();
+
     header("Location: /src/adminRoom.php");
 }
 ?>
@@ -24,9 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/formulario.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <script src="src/js/navbar.js" defer></script>
+    <script src="../js/confirm.js" defer></script>
 </head>
 <body>
+
+    <?php include_once '../components/modalConfirmSave.html'?>
+
+
     <?php include_once '../components/navbar.html' ?>
 
     <main>
@@ -34,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Adiocionar um novo quarto</h2>
         </div>
 
-        <form class="row g-3 needs-validation" action="./typeRoom.php" method="post">
+        <form class="row g-3 needs-validation" action="./typeRoom.php" method="post" id="form">
             <div class="col-md-6">
                 <label for="name_room" class="form-label" require>Nome do quarto</label>
                 <input type="text" class="form-control" id="name_room" name="name_room" placeholder="Ex: luxo" required>
@@ -53,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">Cadastrar</button>
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar</a>
                 <button class="btn btn-danger" type="reset">Apagar tudo</button>
             </div>
         </form>

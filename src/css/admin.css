@@ -32,7 +32,7 @@ body {
     height: 100vh;
     background: rgb(78,201,253);
     background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);    display: flex;    border-radius: 0 0rem 1rem 0;
-    padding: 1rem 1.5rem;
+    padding: 1rem 0.5rem;
 }
 .pc_menu ul {
     display: flex;
@@ -95,15 +95,15 @@ main {
 }
 
 .input_add_data {
-    display: flex;
     gap: 0.5rem;
     padding: 0.4rem 1rem;
     background-color: rgb(78,201,253);
     color: white;
     box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.319);
     border-radius: 0.4rem;
-    justify-content: center;
+    display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 
@@ -142,19 +142,6 @@ main {
   font-size:16px;
 }
 
-.table th{
-	background-color: rgb(78,201,253);
-	color:#ffffff;
-}
-
-.table tbody tr:nth-child(even){
-	background-color: #e2e2e2;
-}
-
-.table tbody tr:hover {
-	background-color: rgba(78,201,253,0.3);
-}
-
 
 .active {
     border-left: white 2px solid;
@@ -180,7 +167,11 @@ main {
     main {
         width: 100%;
         min-height: 100vh;
-        margin-top: 50px;
+        margin-top: 2rem;
+    }
+
+    .table_container {
+        margin-top: 1rem;
     }
 
 	.table thead{
@@ -216,5 +207,8 @@ main {
         display: none;
     }
 
+    .coluns_table td {
+        min-height: 2.5rem ;
+    }
     
 }
