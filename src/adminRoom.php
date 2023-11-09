@@ -20,8 +20,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <?php include_once './components/modalConfirmDelete.php'?>
-
+    <?php include_once './components/modalConfirmDelete.html'?>
 
     <?php include_once './components/modal.html' ?>
 
@@ -46,16 +45,11 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
             <a href="#" class="text-decoration-none">
                 <li><img src="../img/icons/home.svg"> Home</li>
             </a>
-
         </ul>
     </aside>
 
-
     <main>
-
-
         <div class="inputs_table bg-transparent">
-
             <a href="/src/formulario/typeRoom.php" class="text-decoration-none">
                 <div class="input_add_data">
                     <img src="../img/icons/plus.svg" alt="" width="20px">
@@ -94,7 +88,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                                     <a href="">
                                         <img src="../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
                                     </a>
-                                    <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>">
+                                    <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>" data-table="type_room">
                                         <img src="../img/icons/trash.svg" alt="apagar usuario" style="width: 20px; object-fit: fill;">
                                     </button>
                                 </a>
@@ -103,7 +97,6 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                     <?php endforeach ?>
                 </tbody>
             </table>
-
         </section>
 
     </main>

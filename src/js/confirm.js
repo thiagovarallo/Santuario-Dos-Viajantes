@@ -5,9 +5,11 @@ function submitForm() {
     form.submit();
 }
 
-function deleteById(table) {
+function deleteById() {
     const deleteButton = document.getElementById("deleteButton")
     const id = deleteButton.getAttribute('data-id')
+    const table = deleteButton.getAttribute('data-table')
+
 
 
     window.location.href = `/src/operationHttp/methodDelete.php?id=${id}&table=${table}`;
