@@ -32,24 +32,18 @@
     gap: 0.3rem;
 }
 
+.pictures_room img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .colum_pictures {
     width: 100%;
     height: 30%;
     display: flex;
     justify-content: center;
     gap: 0.3rem;
-}
-
-.colum_pictures picture {
-    width: 100%;
-    height: 100%;
-    background-color: rgb(151, 86, 6);
-}
-
-.first_picture {
-    width: 100%;
-    height: 100%;
-    background-color: brown;
 }
 
 .box_buy {
@@ -76,18 +70,10 @@
 
 @media (min-width: 1200px) {
     .container_room {
-        width: 90vw;
+        width: 80vw;
         margin: 0 auto;
         flex-direction: row;
     }
 
-    .pictures_room {
-        flex-direction: row;
-    }
 
-    .colum_pictures {
-        flex-direction: column;
-        width: 30%;
-        height: 100%;
-    }
 }

@@ -36,7 +36,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
             <?php foreach ($query as $room) : ?>
                 <div class="card_bedroom">
                     <div class="bedroom_img">
-                        <img src="https://s2.glbimg.com/NO1Mrkp3Z96htIx8_RhrdHTux0w=/e.glbimg.com/og/ed/f/original/2018/03/08/decoracao-de-quarto-cabeceira-suede-rosa-roupa-de-cama-branco-com-rosa-papel-de-parede-florido-romantico-abajur-e-pendente-brancoarquiteta-leticia-arcangeli.jpg" alt="" width="100%" height="100%">
+                        <img src="data:image/jpg;base64, <?= base64_encode($room['image']) ?>" alt="">
                     </div>
                     <div class="info_room">
                         <div class="name_room">

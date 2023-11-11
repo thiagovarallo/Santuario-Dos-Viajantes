@@ -1,16 +1,24 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once "../../connection.php";
-    $sql = "INSERT INTO type_room (name_room, description, price) VALUES (:name_room, :description, :price);";
-    echo $_POST["imagem"];
-    $statement = $pdo->prepare($sql);
-    $statement->bindValue(":name_room", $_POST["name_room"]);
-    $statement->bindValue(":description", $_POST["description_room"]);
-    $statement->bindValue(":price", intval($_POST["price_room"]));
 
-    $statement->execute();
+    if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] == 0) {
+        $data_image = file_get_contents($_FILES["imagem"]["tmp_name"]);
 
-    header("Location: /src/adminRoom.php");
+        $sql = "INSERT INTO type_room (name_room, description, price, image) VALUES (:name_room, :description, :price, :image)";
+        
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(":name_room", $_POST["name_room"]);
+        $statement->bindValue(":description", $_POST["description_room"]);
+        $statement->bindValue(":price", intval($_POST["price_room"]));
+        $statement->bindValue(":image", $data_image, PDO::PARAM_LOB); // Usar PDO::PARAM_LOB para dados BLOB
+
+        $statement->execute();
+
+        header("Location: /src/adminRoom.php");
+    } else {
+        echo "Erro no upload da imagem. Código de erro: " . $_FILES["image"]["erro"];
+    }
 }
 ?>
 
@@ -41,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Adiocionar um novo quarto</h2>
         </div>
 
-        <form class="row g-3 needs-validation" action="./typeRoom.php" method="post" id="form">
+        <form class="row g-3 needs-validation" action="./typeRoom.php" method="post" id="form" enctype="multipart/form-data">
             <div class="col-md-6">
                 <label for="name_room" class="form-label" require>Nome do quarto</label>
                 <input type="text" class="form-control" id="name_room" name="name_room" placeholder="Ex: luxo" required>
@@ -56,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-md-6">
                 <label for="image" class="form-label">Adicionar imagem do quarto</label>
-                <input class="form-control" type="file" id="imagem" name="imagem" multiple>
+                <input class="form-control" type="file" id="imagem" name="imagem">
             </div>
             </div>
             <div class="col-12">
