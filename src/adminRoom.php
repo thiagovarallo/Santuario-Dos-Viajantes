@@ -80,9 +80,20 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                         <tr class="coluns_table">
                             <td data-label="Id"> <?= $row["id"] ?> </td>
                             <td data-label="Nome do quarto"><?= $row["name_room"] ?></td>
-                            <td data-label="Descrição"><?= $row["description"] ?></td>
+                            <td data-label="Descrição" id="room_description"><p>
+                            <?php
+                                $description = $row["description"];
+
+                                $words = explode(' ', $description);
+
+                                $firt_10_words = implode(' ', array_slice($words, 0, 11));
+
+                                echo $firt_10_words;
+                            ?>
+                            </p>
+                            </td>
                             <td data-label="Preço"><?= $row["price"] ?></td>
-                            <td data-label="imagem"><?= $row["img_path"] ?> udapjda</td>
+                            <td data-label="imagem"><img src="data:image/jpg;base64, <?= base64_encode($row['image']) ?>" alt="<?= $row["name_room"] ?>" width="30px"></td>
                             <td data-label="Ações">
                                 <a href="">
                                     <a href="">

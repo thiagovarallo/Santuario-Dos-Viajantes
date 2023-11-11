@@ -28,7 +28,7 @@ body {
 /*nav desktop */
 
 .pc_menu {
-    min-width: 10%;
+    min-width: 15%;
     height: 100vh;
     background: rgb(78,201,253);
     background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);    display: flex;    border-radius: 0 0rem 1rem 0;
@@ -164,6 +164,7 @@ main {
     }
     
 
+
     main {
         width: 100%;
         min-height: 100vh;
@@ -203,6 +204,10 @@ main {
 		text-align: left;
 	}
 
+    .table td p {
+        margin-top: 1rem;
+    }
+
     .pc_menu {
         display: none;
     }
@@ -210,5 +215,22 @@ main {
     .coluns_table td {
         min-height: 2.5rem ;
     }
+
+    .coluns_table td img {
+
+        object-fit: contain;
+    }
     
+}
+
+@media(min-width: 1200px) {
+    .table td,.table th {
+        max-width: 120px;
+    }
+}
+
+@media(min-width: 1400px) {
+    .pc_menu {
+        min-width: 10%;
+    }
 }
