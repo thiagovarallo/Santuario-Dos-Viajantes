@@ -17,16 +17,24 @@
     gap: 1rem;
 }
 
-.container_room div {
+
+
+.box_pictures {
     width: 100%;
-    height: 400px;
     background-color: rgba(149, 149, 149, 0.189);
+}
+
+.box_buy {
+    width: 100%;
+    min-height: 400px;
+    background-color: rgba(149, 149, 149, 0.189);
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
 }
 
 .pictures_room {
     width: 100%;
     height: 100%;
-    background-color: bisque;
     display: flex;
     flex-direction: column-reverse;
     gap: 0.3rem;
@@ -46,33 +54,79 @@
     gap: 0.3rem;
 }
 
-.box_buy {
-    border-radius: 1rem;
-    padding: 1rem 1.5rem;
+.box_buy h1 {
+    font-weight: 400;
+    font-size: 2rem;
 }
 
-.box_buy h2 {
-    font-weight: 400;
+.price {
+    font-size: 2.5rem;
+    color: green;
+}
+
+#button_submit {
+    font-size: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: #9dc672;
+    border: none;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.072);
+    transition: 1ms;
+}
+
+#button_submit:hover {
+    transform: scale(1.03);
 }
 
 .container_description {
     max-width: 100vw;
-    height: 20vh;
-    padding: 1rem 1rem;
+    min-height: 20vh;
+    padding: 1rem 0rem;
 }
 
 .description {
-    width: 80%;
+    width: 90%;
     height: 100%;
-    background-color: bisque;
+    background-color: rgba(149, 149, 149, 0.189);
     margin: 0 auto;
+    padding: 1rem;
+    line-height: 1.5;
+    text-align: justify;
+    border-radius: 0.5rem;
 }
 
-@media (min-width: 1200px) {
+.container_inputs {
+    width: 100%;
+    height: 70%;
+    background-color: rebeccapurple;
+}
+
+@media (min-width: 900px) {
+
+    .box_pictures, .box_buy {
+        width: 100%;
+        height: 400px;
+        background-color: rgba(149, 149, 149, 0.189);
+    }
+    
+    .box_buy {
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+    }
+    
     .container_room {
         width: 80vw;
         margin: 0 auto;
         flex-direction: row;
+    }
+
+    .container_description {
+        padding: 1rem 1rem;
+    }
+
+    .description {
+        width: 80%;
     }
 
 }

@@ -35,6 +35,8 @@ if ($query === false) {
     <link rel="stylesheet" href="./css/room.css">
     <link rel="stylesheet" href="./css/navbar.css">
     <link rel="stylesheet" href="./css/footer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -42,21 +44,45 @@ if ($query === false) {
     <?php include_once './components/navbar.html' ?>
 
     <section class="container_room">
-        <div>
+        <div class="box_pictures">
             <section class="pictures_room">
                 <img src="data:image/jpg;base64, <?= base64_encode($query['image']) ?>" alt="<?= $query['name_room'] ?>">
             </section>
         </div>
 
         <div class="box_buy">
-            <h2>Quarto executivo</h2>
+            <h1><?= $query["name_room"] ?></h1>
+
+            <h3 class="price">R$ <?= $query["price"] ?></h3>
+
+            <form class="row g-3 bg-transparent">
+                <section class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Quantidades de adultos</label>
+                    <input type="number" class="form-control" id="inputEmail4" min="1" max="5">
+                </section>
+                <section class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Quantidades de crianças</label>
+                    <input type="number" class="form-control" id="inputPassword4" min="1" max="5">
+                </section>
+                <section class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Data de check-in</label>
+                    <input type="date" class="form-control" id="inputEmail4">
+                </section>
+                <section class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Data de check-out</label>
+                    <input type="date" class="form-control" id="inputPassword4">
+                </section>
+                <section class="col-md-12 d-flex justify-content-center" >
+                    <button type="submit" class="btn" id="button_submit">Reservar</button>
+                </section>
+            </form>
 
         </div>
     </section>
 
     <section class="container_description">
         <div class="description">
-            a
+            <?= $query["description"] ?>
         </div>
     </section>
 
