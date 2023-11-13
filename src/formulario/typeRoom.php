@@ -5,13 +5,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_FILES["imagem"]) && $_FILES["imagem"]["error"] == 0) {
         $data_image = file_get_contents($_FILES["imagem"]["tmp_name"]);
 
-        $sql = "INSERT INTO type_room (name_room, description, price, image) VALUES (:name_room, :description, :price, :image)";
+        $sql = "INSERT INTO type_room (name_room, description, price, image, number_adult, number_children, number_beds) VALUES (:name_room, :description, :price, :image, :number_adult, :number_children, :number_beds)";
         
         $statement = $pdo->prepare($sql);
         $statement->bindValue(":name_room", $_POST["name_room"]);
         $statement->bindValue(":description", $_POST["description_room"]);
         $statement->bindValue(":price", intval($_POST["price_room"]));
         $statement->bindValue(":image", $data_image, PDO::PARAM_LOB); // Usar PDO::PARAM_LOB para dados BLOB
+        $statement->bindValue(":number_adult", $_POST["number_adult"]);
+        $statement->bindValue(":number_children", $_POST["number_children"]);
+        $statement->bindValue("number_beds", $_POST["number_beds"]);
+
 
         $statement->execute();
 
@@ -66,9 +70,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="image" class="form-label">Adicionar imagem do quarto</label>
                 <input class="form-control" type="file" id="imagem" name="imagem">
             </div>
+
+            <hr>       
+
+            <div class="col-md-6">
+                <label for="number_adult" class="form-label" require>Número máximo de Adultos</label>
+                <input type="number" class="form-control" id="number_adult" name="number_adult" placeholder="Ex: 2" required>
             </div>
+            <div class="col-md-6">
+                <label for="number_children" class="form-label" require>Número máximo de crianças</label>
+                <input type="number" class="form-control" id="number_children" name="number_children" placeholder="Ex: 5" required>
+            </div>
+            <div class="col-md-6">
+                <label for="number_beds" class="form-label" require>Número de camas</label>
+                <input type="number" class="form-control" id="number_beds" name="number_beds" placeholder="Ex: 1" required>
+            </div>
+
             <div class="col-12">
-                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar</a>
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cadastrar quarto</a>
                 <button class="btn btn-danger" type="reset">Apagar tudo</button>
             </div>
         </form>

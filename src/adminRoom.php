@@ -71,6 +71,9 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                         <th>Nome do quarto</th>
                         <th>Descrição</th>
                         <th>Preço</th>
+                        <th>Número de adultos</th>
+                        <th>Número de crianças</th>
+                        <th>Número de camas</th>
                         <th>imagem</th>
                         <th>Ações</th>
                     </tr>
@@ -78,7 +81,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                 <tbody>
                     <?php foreach ($query as $row) : ?>
                         <tr class="coluns_table">
-                            <td data-label="Id"> <?= $row["id"] ?> </td>
+                            <td data-label="Id" class=""> <?= $row["id"] ?> </td>
                             <td data-label="Nome do quarto"><?= $row["name_room"] ?></td>
                             <td data-label="Descrição" id="room_description"><p>
                             <?php
@@ -93,6 +96,9 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                             </p>
                             </td>
                             <td data-label="Preço"><?= $row["price"] ?></td>
+                            <td data-label="Número de adultos"><?= $row["number_adult"] ?></td>
+                            <td data-label="Número de crianças"><?= $row["number_children"] ?></td>
+                            <td data-label="Número de quartos"><?= $row["number_beds"] ?></td>
                             <td data-label="imagem"><img src="data:image/jpg;base64, <?= base64_encode($row['image']) ?>" alt="<?= $row["name_room"] ?>" width="30px"></td>
                             <td data-label="Ações">
                                 <a href="">
