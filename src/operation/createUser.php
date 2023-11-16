@@ -7,7 +7,7 @@
 
     $hash = password_hash($password, PASSWORD_ARGON2ID);
 
-    $sql = "INSERT INTO users (name, email, password, role, first_login) VALUES (:name, :email, :password, 'user', 0);";
+    $sql = "INSERT INTO users (name, email, password, role, first_login, CPF, sexo, telefone, logadouro, numero, bairro, cidade, estado, cep, pais) VALUES (:name, :email, :password, 'user', 0, null, null, null, null, null, null, null, null, null, null);";
 
     $statement = $pdo->prepare($sql);
     $statement->bindValue(":name", $name);
