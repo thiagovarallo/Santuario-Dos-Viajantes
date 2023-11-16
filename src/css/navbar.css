@@ -78,6 +78,25 @@
     display: none;
 }
 
+.input_user {
+    height: 100%;
+    width: auto;
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.text_input_user {
+    margin: 0;
+    color: white;
+    line-height: 1;
+    display: none;
+}
+.text_input_user p {
+    margin: 0;
+    text-align: end;
+}
 @media (min-width : 1200px) {
 
     .header-container {
@@ -126,5 +145,8 @@ background: radial-gradient(circle, rgba(60,134,230,1) 4%, rgba(78,201,253,1) 10
     }
     .nav-desktop nav ul li a:hover {
         background-color: #23bdffd5;
+    }
+    .text_input_user {
+        display: block;
     }
 }

@@ -1,6 +1,8 @@
 <?php
 include_once "../connection.php";
 
+session_start();
+
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if ($id === false) {
@@ -21,6 +23,17 @@ if ($query === false) {
     http_response_code(404);
     echo "Quarto não encontrado";
     exit;
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+
+    if ($_SESSION["Logged"] == true) {
+        echo "logado";
+    } else {
+        header("location: /src/login.php");
+    }
 }
 
 ?>
@@ -52,17 +65,17 @@ if ($query === false) {
 
         <div class="box_buy">
             <h1><?= $query["name_room"] ?></h1>
-
+            <p class="number_people">até <?= $query["number_adult"] ?> adultos, até <?= $query["number_children"] ?> crianças, total de cama <?= $query["number_beds"] ?></p>
             <h3 class="price">R$ <?= $query["price"] ?></h3>
 
-            <form class="row g-3 bg-transparent">
+            <form class="row g-3 bg-transparent" method="post" action="./room.php?id=<?= $id ?>">
                 <section class="col-md-6">
                     <label for="inputEmail4" class="form-label">Quantidades de adultos</label>
-                    <input type="number" class="form-control" id="inputEmail4" min="1" max="5">
+                    <input type="number" class="form-control" id="inputEmail4" min="0" max="<?= $query["number_adult"] ?>">
                 </section>
                 <section class="col-md-6">
                     <label for="inputPassword4" class="form-label">Quantidades de crianças</label>
-                    <input type="number" class="form-control" id="inputPassword4" min="1" max="5">
+                    <input type="number" class="form-control" id="inputPassword4" min="0" max="<?= $query["number_children"] ?>">
                 </section>
                 <section class="col-md-6">
                     <label for="inputEmail4" class="form-label">Data de check-in</label>

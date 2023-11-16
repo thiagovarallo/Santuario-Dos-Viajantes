@@ -18,12 +18,23 @@
         </div>
 
         <div class="settings_user">
-            <img src="../../img/UserIcon.svg" alt="">
-            <img src="../../img/Language.svg" alt="">
+            <div class="input_user">
+                <div class="text_input_user">
+                    <p><?php
+                        if(isset($_SESSION["Name"]) && $_SESSION["Name"] !== null) {
+                            echo "Olá, " . $_SESSION["Name"] . "</br>";
+                            echo "<small><a href='src/operation/logout.php' style='color: white; text-decoration: none;'>Clique aqui para sair</a></small>";
+                        } else {
+                            echo "<p><a href='src/login.php' style='color: white; text-decoration: none;'>Clique aqui </br> para logar</a></p>"; 
+                        }
+                    ?></p>
+                </div>
+                <img src="../../img/UserIcon.svg" alt="">
+            </div>
         </div>
     </header>
 
     <section id="slideBar_mobile" class="slideBar">
         
     </section>
-    <script src="js/navbar.js"></script>
+    <script src="src/js/navbar.js"></script>

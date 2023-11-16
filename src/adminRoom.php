@@ -1,7 +1,17 @@
 <?php
 include_once("../connection.php");
 
-$query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
+session_start();
+
+if (!isset($_SESSION["Logged"]) || $_SESSION["Logged"] !== true || !isset($_SESSION["Role"]) || $_SESSION["Role"] == "user") {
+    header("Location: /"); 
+    exit(); 
+}
+
+if ($_SESSION["Role"] == "admin") {
+    $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 ?>
 

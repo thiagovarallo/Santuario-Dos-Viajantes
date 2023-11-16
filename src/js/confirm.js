@@ -12,5 +12,5 @@ function deleteById() {
 
 
 
-    window.location.href = `/src/operationHttp/methodDelete.php?id=${id}&table=${table}`;
+    window.location.href = `/src/operation/methodDelete.php?id=${id}&table=${table}`;
 }

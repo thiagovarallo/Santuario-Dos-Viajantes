@@ -55,6 +55,12 @@
 .box_buy h1 {
     font-weight: 400;
     font-size: 2rem;
+    margin: 0;
+}
+
+.number_people {
+    margin: 0;
+    font-size: 0.8rem;
 }
 
 .price {

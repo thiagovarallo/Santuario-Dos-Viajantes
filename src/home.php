@@ -1,7 +1,15 @@
 <?php
 include_once "./connection.php";
 
+session_start();
+
 $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
+
+var_dump($_SESSION);
+
+if ($_SESSION["First_login"] == false) {
+    header("Location: src/formulario/insertDataUser.php");
+}
 
 ?>
 
@@ -17,8 +25,6 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="./src/css/navbar.css">
     <link rel="stylesheet" href="./src/css/footer.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
-
 </head>
 
 <body>
@@ -41,7 +47,7 @@ $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
                     <div class="info_room">
                         <div class="name_room">
                             <h2> <?= $room["name_room"] ?> </h2>
-                            <p>1 cama, 2 pessoas</p>
+                            <p><?= $room["number_beds"] ?> cama, <?= $room["number_beds"] ?> adultos</p>
                         </div>
 
                         <div class="price_room">
