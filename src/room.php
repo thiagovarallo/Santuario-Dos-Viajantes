@@ -27,15 +27,48 @@ if ($query === false) {
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
+
+
+    if ($_SESSION["First_login"] == 0) {
+        header("Location: /");
+    }
 
     if ($_SESSION["Logged"] == true) {
-        echo "logado";
+
+        $email_user = $_SESSION["Email"];
+        $type_room = $query["name_room"];
+        $date_check_in = $_POST["date_check-in"];
+        $date_check_out = $_POST["date_check-out"];
+        $status = "Pendente";
+        $num_adult = $_POST["num_adult"];
+        $num_children = $_POST["num_children"];
+
+
+        $sql = "INSERT INTO accommodation (email_user, type_room, date_check_in, date_check_out, status, num_adult, num_children) 
+        VALUES (:email_user, :type_room, :date_check_in, :date_check_out, :status, :num_adult, :num_children)";
+
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(':email_user', $email_user);
+            $stmt->bindValue(':type_room', $type_room);
+            $stmt->bindValue(':date_check_in', $date_check_in);
+            $stmt->bindValue(':date_check_out', $date_check_out);
+            $stmt->bindValue(':status', $status);
+            $stmt->bindValue(':num_adult', $num_adult);
+            $stmt->bindValue(':num_children', $num_children);
+
+            $stmt->execute();
+
+            echo "Inserção bem-sucedida.";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage();
+        }
     } else {
         header("location: /src/login.php");
     }
 }
-
+var_dump($_SESSION)
 ?>
 
 <!DOCTYPE html>
@@ -70,22 +103,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form class="row g-3 bg-transparent" method="post" action="./room.php?id=<?= $id ?>">
                 <section class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Quantidades de adultos</label>
-                    <input type="number" class="form-control" id="inputEmail4" min="0" max="<?= $query["number_adult"] ?>">
+                    <label for="num_adult" class="form-label">Quantidades de adultos</label>
+                    <input type="number" class="form-control" name="num_adult" min="0" max="<?= $query["number_adult"] ?>">
                 </section>
                 <section class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Quantidades de crianças</label>
-                    <input type="number" class="form-control" id="inputPassword4" min="0" max="<?= $query["number_children"] ?>">
+                    <label for="num_children" class="form-label">Quantidades de crianças</label>
+                    <input type="number" class="form-control" name="num_children" min="0" max="<?= $query["number_children"] ?>">
                 </section>
                 <section class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Data de check-in</label>
-                    <input type="date" class="form-control" id="inputEmail4">
+                    <label for="date_check-in" class="form-label">Data de check-in</label>
+                    <input type="date" class="form-control" name="date_check-in">
                 </section>
                 <section class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Data de check-out</label>
-                    <input type="date" class="form-control" id="inputPassword4">
+                    <label for="date_check-out" class="form-label">Data de check-out</label>
+                    <input type="date" class="form-control" name="date_check-out">
                 </section>
-                <section class="col-md-12 d-flex justify-content-center" >
+                <section class="col-md-12 d-flex justify-content-center">
                     <button type="submit" class="btn" id="button_submit">Reservar</button>
                 </section>
             </form>
