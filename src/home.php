@@ -5,8 +5,6 @@ session_start();
 
 $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
 
-var_dump($_SESSION);
-
 if (empty($_SESSION)) {
     header("Location: src/login.php");
 } else {

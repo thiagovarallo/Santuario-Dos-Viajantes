@@ -32,7 +32,7 @@ if ($_SESSION["Role"] == "admin") {
 <body>
     <?php include_once './components/modalConfirmDelete.html'?>
 
-    <?php include_once './components/modal.html' ?>
+    <?php include_once './components/modalConfirmSave.html' ?>
 
     <nav class="mobile_menu">
 
