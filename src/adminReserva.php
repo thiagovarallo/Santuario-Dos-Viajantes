@@ -100,7 +100,7 @@ if ($_SESSION["Role"] == "admin") {
                                     <a href="">
                                         <img src="../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
                                     </a>
-                                    <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>" data-table="accommodation">
+                                    <button onclick="deleteReserva()" id="deleteButton" class="border border-0 bg-transparent" data-id="<?= $row['Id_hospedagem'] ?>">
                                         <img src="../img/icons/trash.svg" alt="apagar usuario" style="width: 20px; object-fit: fill;">
                                     </button>
                                 </a>

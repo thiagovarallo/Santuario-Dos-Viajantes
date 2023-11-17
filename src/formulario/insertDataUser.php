@@ -41,7 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':email', $_SESSION["Email"]);
     
         $stmt->execute();
-    
+        
+        $_SESSION['First_login'] = 1;
+
         header("Location: /");
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
