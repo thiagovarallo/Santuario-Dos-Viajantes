@@ -13,7 +13,7 @@ if ($id !== false && !empty($table)) {
         $statement->bindValue(':id', $id);
         $statement->execute();
 
-        header("Location: /src/adminroom.php");
+        header("Location: ".$_SERVER['HTTP_REFERER']."");
     } catch (PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }

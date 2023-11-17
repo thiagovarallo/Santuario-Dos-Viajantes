@@ -50,7 +50,7 @@ body {
 }
 
 .pc_menu ul a:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
 }
 .pc_menu ul a li img {
     width: 20px;
@@ -145,7 +145,7 @@ main {
 
 .active {
     border-left: white 2px solid;
-    transform: scale(1.2);
+    transform: scale(1.05);
 }
 
 
