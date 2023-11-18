@@ -1,68 +1,65 @@
 <?php
-
-/* use PHPMailer\PHPMailer\PHPMailer;
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+//Load Composer's autoloader
+require '../../vendor/autoload.php';
 
-require '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../../vendor/phpmailer/phpmailer/src/Exception.php';
-require '../../vendor/phpmailer/phpmailer/src/SMTP.php';
-
-require '../../vendor/autoload.php'; */
-
-include_once "../../connection.php";
-
-
-$id = $_GET['id'];
-$email = $_GET['emailUser'];
-$typeRoom = $_GET['typeroom'];
-
-$sql = "UPDATE accommodation SET status='Reservado' WHERE Id_hospedagem=:id";
+$mail = new PHPMailer(true);
 
 try {
-    $stmt = $pdo->prepare($sql);
+    //Server settings
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    $mail->isSMTP();                                            //Send using SMTP
+    $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+    $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+    $mail->Username   = 'playerthiago86@gmail.com';                     //SMTP username
+    $mail->Password   = 'cawhsyiaoazvomqr';                               //SMTP password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+    $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->CharSet = 'utf8';
 
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    //Recipients
+    $mail->setFrom('playerthiago86@gmail.com', 'Santuário dos Viajantes');
+    $mail->addAddress('thiagovaralllo@gmail.com', 'Joe User');     //Add a recipient
 
-    $stmt->execute();
 
-    /* $mail = new PHPMailer(true);
-    // Configurações do servidor
-    $mail->isSMTP();        //Devine o uso de SMTP no envio
-    $mail->SMTPAuth = true; //Habilita a autenticação SMTP
-    $mail->Username   = 'santuariodosviagantes012@gmail.com';
-    $mail->Password   = 'santuario123456';
-    // Criptografia do envio SSL também é aceito
-    $mail->SMTPSecure = 'tls';
-    // Informações específicadas pelo Google
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPDebug = 2;
-    // Define o remetente
-    $mail->setFrom('santuariodosviagantes012@gmail.com');
-    // Define o destinatário
-    $mail->addAddress($email);
-    // Conteúdo da mensagem
-    $mail->isHTML(true);  // Seta o formato do e-mail para aceitar conteúdo HTML
-    $mail->Subject = 'Assunto';
-    $mail->Body    = 'Este é o corpo da mensagem <b>Olá em negrito!</b>';
-    $mail->AltBody = 'Este é o cortpo da mensagem para clientes de e-mail que não reconhecem HTML';
-    // Enviar
+    //Content
+    $mail->isHTML(true);                                  //Set email format to HTML
+    $mail->Subject = 'Confirmação de Reserva - Santuário dos Viajantes';
+    $mail->Body    = '
+    
+    <h3>Prezado [Nome do Hóspede],</h3>
+
+    <p>É com prazer que confirmamos a sua reserva no Santuário dos Viajantes. Estamos ansiosos para recebê-lo e proporcionar uma estadia memorável. Abaixo, você encontrará os detalhes da sua reserva:</p>
+    
+    <ul> 
+        <li>Nome do Hotel: Santuário dos Viajantes</li>
+        <li>Data de Check-in: [Data]</li>
+        <li>Data de Check-out: [Data]</li>
+        <li>Número de Hóspedes: [Número de Adultos e Crianças]</li>
+        <li>Tipo de Quarto: [Tipo de Quarto Reservado]</li>
+        <li>Tarifa Total: [Valor Total]</li>
+    </ul>
+
+    <p>Lembre-se de que estas informações estão sujeitas a confirmação no momento do check-in. Recomendamos que revise os detalhes da sua reserva para garantir que estejam corretos. Caso haja alguma discrepância ou se precisar de assistência adicional, não hesite em entrar em contato conosco.</p>    
+    
+    <p>Pedimos que esteja ciente das políticas de cancelamento do hotel e, se necessário, faça quaisquer alterações com antecedência. Caso tenha alguma solicitação especial ou requisito dietético, por favor, informe-nos com antecedência para que possamos fazer os devidos arranjos.</p>
+    
+    <p>Agradecemos por escolher o Santuário dos Viajantes e estamos ansiosos para recebê-lo em breve. Tenha uma viagem segura até aqui!</p>
+    
+    <p>Atenciosamente,<p>
+    
+    [Seu Nome]
+    [Seu Cargo]
+    Santuário dos Viajantes
+    [Seus Detalhes de Contato]';
+
     $mail->send();
-    if(!$mail->send()) {
-        echo 'Não foi possível enviar a mensagem.<br>';
-        echo 'Erro: ' . $mail->ErrorInfo;
-    } else {
-        echo 'Mensagem enviada.';
-    } */
-
-    header("Location: " . $_SERVER['HTTP_REFERER'] . "");
-
-
-
-
-
-    exit();
-} catch (PDOException $e) {
-    echo "Erro ao executar a atualização: " . $e->getMessage();
-} 
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
