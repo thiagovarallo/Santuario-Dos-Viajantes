@@ -24,6 +24,7 @@
             $_SESSION["Role"] = $userData["role"];
             $_SESSION["First_login"] = $userData["first_login"];
             $_SESSION["Email"] = $userData["email"];
+            $_SESSION["Id_user"] = $userData["id"];
 
             if ($userData["role"] == "admin") {
                 header( 'Location: ./adminHome.php' );

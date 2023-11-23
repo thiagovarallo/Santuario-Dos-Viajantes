@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_SESSION["Logged"] == true) {
 
         $email_user = $_SESSION["Email"];
+        $id_user = $_SESSION["Id_user"];
         $type_room = $query["name_room"];
         $date_check_in = $_POST["date_check-in"];
         $date_check_out = $_POST["date_check-out"];
@@ -45,8 +46,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $num_children = $_POST["num_children"];
 
 
-        $sql = "INSERT INTO accommodation (email_user, type_room, date_check_in, date_check_out, status, num_adult, num_children) 
-        VALUES (:email_user, :type_room, :date_check_in, :date_check_out, :status, :num_adult, :num_children)";
+        $sql = "INSERT INTO accommodation (email_user, type_room, date_check_in, date_check_out, status, num_adult, num_children, id_user) 
+        VALUES (:email_user, :type_room, :date_check_in, :date_check_out, :status, :num_adult, :num_children, :id_user)";
 
         try {
             $stmt = $pdo->prepare($sql);
@@ -57,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindValue(':status', $status);
             $stmt->bindValue(':num_adult', $num_adult);
             $stmt->bindValue(':num_children', $num_children);
+            $stmt->bindValue(':id_user', $id_user);
 
             $stmt->execute();
 

@@ -73,6 +73,7 @@ if ($_SESSION["Role"] == "admin") {
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Id usuário</th>
                         <th>Email usuário</th>
                         <th>Tipo do quarto</th>
                         <th>Data check-in</th>
@@ -87,13 +88,14 @@ if ($_SESSION["Role"] == "admin") {
                     <?php foreach ($query as $row) : ?>
                         <tr class="coluns_table">
                             <td data-label="Id" class="" style="word-break: break-all;"> <?= $row["Id_hospedagem"] ?> </td>
+                            <td data-label="Id usuário" class="" style="word-break: break-all;"> <?= $row["id_user"] ?> </td>
                             <td data-label="Email do usuário" style="word-break: break-all;"><?= $row["email_user"] ?></td>
                             <td data-label="Tipo do quarto" style="word-break: break-all;"><?= $row["type_room"] ?></td>
                             <td data-label="Data check-in" style="word-break: break-all;"><?= $row["date_check_in"] ?></td>
                             <td data-label="Data check-out" style="word-break: break-all;"><?= $row["date_check_out"] ?></td>
                             <td data-label="Número de adultos" style="word-break: break-all;"><?= $row["num_adult"] ?></td>
                             <td data-label="Número de crianças" style="word-break: break-all;"><?= $row["num_children"] ?></td>
-                            <td data-label="Status" style="word-break: break-all; cursor: pointer;" ondblclick="statusReserva('<?= $row['Id_hospedagem'] ?>', '<?= $row['email_user'] ?>', '<?= $row['type_room'] ?>')"><?= $row["status"] ?></td>
+                            <td data-label="Status" style="word-break: break-all; cursor: pointer;" ondblclick="statusReserva('<?= $row['Id_hospedagem'] ?>', '<?= $row['email_user'] ?>', '<?= $row['type_room'] ?>','<?= $row['id_user'] ?>')"><?= $row["status"] ?></td>
                             
                             <td data-label="Ações">
                                 <a href="">
@@ -114,8 +116,8 @@ if ($_SESSION["Role"] == "admin") {
     </main>
 
     <script>
-        function statusReserva (id, email_user, type_room) {
-            window.location.href = `/src/operation/statusReserva.php?id=${id}&emailUser=${email_user}&typeroom=${type_room}`;
+        function statusReserva (id, email_user, type_room, id_user) {
+            window.location.href = `/src/operation/statusReserva.php?id=${id}&emailUser=${email_user}&typeroom=${type_room}&iduser=${id_user}`;
         }
     </script>
 

@@ -37,16 +37,39 @@
     </header>
 
     <section id="slideBar_mobile" class="slideBar">
+
         <div class="header_slidebar">
+   
             <img src="../../img/Group-2.svg" alt="" height="100%">
+
+            <div class="close_slide_bar" id="close_slide_bar" >
+                <img src="../../img/icons/close.svg" alt="close slideBar">
+            </div>
+            
         </div>
         <ul class="nav_slidebar">
-            <li>Home</li>
-            <li>teste</li>
-            <li>teste</li>
-            <li>teste</li>
-            <li>teste</li>
+            <li><a href="#">home</a></li>
+            <li><a href="#">Galeria de fotos</a></li>
+            <li><a href="#">home</a></li>
         </ul>
+        <div class="settings_user_mobile">
+            <div class="input_user_mobile">
+                <img src="../../img/UserIcon.svg" alt="">
+
+                <div class="text_input_user_mobile">
+                    <p><?php
+                        if(isset($_SESSION["Name"]) && $_SESSION["Name"] !== null) {
+                            echo "Olá, " . $_SESSION["Name"] . "</br>";
+                            echo "<small><a href='../../src/operation/logout.php' style='color: white; text-decoration: none;'>Clique aqui para sair</a></small>";
+                        } else {
+                            echo "<p><a href='src/login.php' style='color: white; text-decoration: none;'>Clique aqui </br> para logar</a></p>"; 
+                        }
+                    ?></p>
+                </div>
+            </div>
+        </div>
 
     </section>
-    <script src="src/js/navbar.js"></script>
+
+
+    <script src="./src/js/navbar.js"></script>

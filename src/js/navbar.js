@@ -1,12 +1,16 @@
 
 const slideBar = document.getElementById('slideBar_mobile');
 const menuBar = document.getElementById('menuBar');
+const closeBar = document.getElementById('close_slide_bar')
 
 menuBar.addEventListener('click', () => {
-    slideBar.style.display = 'flex'
+    slideBar.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
 })
 
 
-//função para tirar elemento do html
-
-console.log(window.screen.width)
+closeBar.addEventListener('click', () => {
+    slideBar.style.display = 'none';
+    document.body.style.overflowX = 'scroll';
+})
