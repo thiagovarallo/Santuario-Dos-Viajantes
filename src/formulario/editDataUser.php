@@ -2,17 +2,37 @@
 
 session_start();
 
-if (!isset($_SESSION["Logged"])) {
-    header("Location: ../login.php");
+if (!isset($_SESSION["Logged"]) || $_SESSION["Logged"] !== true || !isset($_SESSION["Role"]) || $_SESSION["Role"] == "user") {
+    header("Location: /");
+    exit();
 }
 
-if ($_SESSION["First_login"] == 1) {
-    header("Location: /");
+if ($_SESSION["Role"] == "admin") {
+    include_once '../../connection.php';
+
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+
+    // Use prepared statement for SELECT query to prevent SQL injection
+    $stmtSelect = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+    $stmtSelect->bindValue(":id", $id, PDO::PARAM_INT);
+    $stmtSelect->execute();
+
+    $queryUser = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+
+
+    if ($queryUser === false) {
+        http_response_code(404);
+        echo "Usuario não encontrado";
+        exit;
+    }
+
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once "../../connection.php";
 
+    $name = $_POST['name'];
+    $email = $_POST['email'];
     $cpf = $_POST['CPF_user'];
     $sexo = $_POST['sexo'];
     $telefone = $_POST['telefone_user'];
@@ -22,12 +42,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cidade = $_POST['cidade_user'];
     $estado = $_POST['estado_user'];
     $cep = $_POST['cep_user'];
-    $pais = $_POST['pais'];
+    $pais = $_POST['pais_user'];
+    $role = $_POST['Role'];
 
-    $sql = "UPDATE users SET CPF=:cpf, sexo=:sexo, telefone=:telefone, logadouro=:logadouro, numero=:numero, bairro=:bairro, cidade=:cidade, estado=:estado, cep=:cep, pais=:pais, first_login=1 WHERE email=:email; ";
+    $sql = "UPDATE users SET name=:name ,email=:email, CPF=:cpf, sexo=:sexo, telefone=:telefone, logadouro=:logadouro, numero=:numero, bairro=:bairro, cidade=:cidade, estado=:estado, cep=:cep, pais=:pais, role=:role WHERE id=$id; ";
 
     try {
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
         $stmt->bindParam(':cpf', $cpf);
         $stmt->bindParam(':sexo', $sexo);
         $stmt->bindParam(':telefone', $telefone);
@@ -38,13 +61,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':estado', $estado);
         $stmt->bindParam(':cep', $cep);
         $stmt->bindParam(':pais', $pais);
-        $stmt->bindParam(':email', $_SESSION["Email"]);
+        $stmt->bindParam(':role', $role);
     
         $stmt->execute();
         
         $_SESSION['First_login'] = 1;
 
-        header("Location: /");
+        header("Location: ../adminCliente.php");
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage();
     }
@@ -73,18 +96,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <main>
         <div class="title_form">
-            <h2>Insera seu dados para fazer o cadastro</h2>
+            <h2>Altere os dados do usuario</h2>
         </div>
 
-        <form class="row g-3 needs-validation" action="./insertDataUser.php" method="post" id="form" enctype="multipart/form-data">
+        <form class="row g-3 needs-validation" action="./editDataUser.php?id=<?= $queryUser['id'] ?>" method="post" id="form" enctype="multipart/form-data">
+            <div class="col-md-6">
+                <label for="nome" class="form-label" require>Nome</label>
+                <input type="text" class="form-control" id="nome" name="name" value="<?= $queryUser['name'] ?>" required>
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label" require>Email</label>
+                <input type="text" class="form-control" id="email" name="email" value="<?= $queryUser['email'] ?>" required>
+            </div>
+        
             <div class="col-md-6">
                 <label for="CPF_user" class="form-label" require>CPF</label>
-                <input type="text" class="form-control" id="CPF_user" name="CPF_user" placeholder="Ex: luxo" maxlength="11" minlength="11" required>
+                <input type="text" class="form-control" id="CPF_user" name="CPF_user" value="<?= $queryUser['CPF'] ?>" maxlength="11" minlength="11" required>
             </div>
             <div class="col-md-6">
                 <label for="CPF_user" class="form-label" require>Sexo</label>
                 <select class="form-select" name="sexo" aria-label="Qual é seu sexo?">
-                    <option selected>Qual é seu sexo?</option>
+                    <option value="<?= $queryUser['sexo'] ?>" selected><?= $queryUser['sexo'] ?></option>
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
                     <option value="Outro">Outro</option>
@@ -94,31 +126,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="col-md-6">
                 <label for="telefone_user" class="form-label" require>Telefone</label>
-                <input type="tel" class="form-control" id="telefone_user" name="telefone_user" required>
+                <input type="tel" class="form-control" id="telefone_user" name="telefone_user" value="<?= $queryUser['telefone'] ?>" required>
+            </div>
+
+            <div class="col-md-6">
+                <label for="Role" class="form-label" require>Role</label>
+                <select class="form-select" name="Role">
+                    <option value="<?= $queryUser['role'] ?>" selected><?= $queryUser['role'] ?></option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                    
+                </select>
             </div>
 
             <hr>
 
             <div class="col-md-6">
                 <label for="logadouro_user" class="form-label" require>Logadouro</label>
-                <input type="text" class="form-control" id="logadouro_user" name="logadouro_user" required>
+                <input type="text" class="form-control" id="logadouro_user" name="logadouro_user" value="<?= $queryUser['logadouro'] ?>" required>
             </div>
             <div class="col-md-6">
                 <label for="num_user" class="form-label" require>Número</label>
-                <input type="number" class="form-control" id="num_user" name="num_user" required>
+                <input type="number" class="form-control" id="num_user" name="num_user" value="<?= $queryUser['numero'] ?>" required>
             </div>
             <div class="col-md-6">
                 <label for="bairro_user" class="form-label" require>Bairro</label>
-                <input type="text" class="form-control" id="bairro_user" name="bairro_user" required>
+            <input type="text" class="form-control" id="bairro_user" name="bairro_user" value="<?= $queryUser['bairro'] ?>" required>
             </div>
             <div class="col-md-6">
                 <label for="cidade_user" class="form-label" require>Cidade</label>
-                <input type="text" class="form-control" id="cidade_user" name="cidade_user" required>
+                <input type="text" class="form-control" id="cidade_user" name="cidade_user" value="<?= $queryUser['cidade'] ?>" required>
             </div>
             <div class="col-md-6">
                 <label for="estado_user" class="form-label" require>Estado</label>
                 <select class="form-select" name="estado_user" aria-label="Selecione seu estado">
-                    <option selected>Selecione o estado</option>
+                    <option value="<?= $queryUser['estado'] ?>" selected><?= $queryUser['estado'] ?></option>
                     <option value="AC">Acre</option>
                     <option value="AL">Alagoas</option>
                     <option value="AP">Amapá</option>
@@ -149,12 +191,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="cep_user" class="form-label" require>Cep</label>
-                <input type="number" class="form-control" id="cep_user" name="cep_user"  required>
+                <label for="cep_user" class="form-label" require>CEP</label>
+                <input type="text" class="form-control" id="cep_user" name="cep_user" value="<?= $queryUser['cep'] ?>" required>
             </div>
             <div class="col-md-6">
                 <label for="pais_user" class="form-label" require>País</label>
-                <input type="text" class="form-control" id="pais_user" name="pais_user"  required>
+                <input type="text" class="form-control" id="pais_user" name="pais_user" value="<?= $queryUser['pais'] ?>"  required>
             </div>
 
             <div class="col-12">

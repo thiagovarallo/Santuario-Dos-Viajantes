@@ -112,7 +112,7 @@ if ($_SESSION["Role"] == "admin") {
                             <td data-label="imagem"><img src="data:image/jpg;base64, <?= base64_encode($row['image']) ?>" alt="<?= $row["name_room"] ?>" width="30px"></td>
                             <td data-label="Ações">
                                 <a href="">
-                                    <a href="">
+                                    <a href="./formulario/typeRoomEdit.php?id=<?= $row["id"] ?>">
                                         <img src="../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
                                     </a>
                                     <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>" data-table="type_room">

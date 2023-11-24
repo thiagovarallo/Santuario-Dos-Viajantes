@@ -4,8 +4,8 @@ include_once("../connection.php");
 session_start();
 
 if (!isset($_SESSION["Logged"]) || $_SESSION["Logged"] !== true || !isset($_SESSION["Role"]) || $_SESSION["Role"] == "user") {
-    header("Location: /"); 
-    exit(); 
+    header("Location: /");
+    exit();
 }
 
 if ($_SESSION["Role"] == "admin") {
@@ -30,7 +30,7 @@ if ($_SESSION["Role"] == "admin") {
 </head>
 
 <body>
-    <?php include_once './components/modalConfirmDelete.html'?>
+    <?php include_once './components/modalConfirmDelete.html' ?>
 
     <?php include_once './components/modalConfirmSave.html' ?>
 
@@ -107,14 +107,14 @@ if ($_SESSION["Role"] == "admin") {
                             <td data-label="País" style="word-break: break-all;"><?= $row["pais"] ?></td>
                             <td data-label="Role" style="word-break: break-all;"><?= $row["role"] ?></td>
                             <td data-label="Ações">
-                                <a href="">
-                                    <a href="">
-                                        <img src="../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
-                                    </a>
-                                    <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>" data-table="users">
-                                        <img src="../img/icons/trash.svg" alt="apagar usuario" style="width: 20px; object-fit: fill;">
-                                    </button>
+
+                                <a href="./formulario/editDataUser.php?id=<?= $row["id"] ?>">
+                                    <img src=" ../img/icons/pencil.svg" alt="editar usuario" style="width: 19px; object-fit: fill;">
                                 </a>
+                                <button id="deleteButton" class="border border-0 bg-transparent" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-id="<?= $row['id'] ?>" data-table="users">
+                                    <img src="../img/icons/trash.svg" alt="apagar usuario" style="width: 20px; object-fit: fill;">
+                                </button>
+
                             </td>
                         </tr>
                     <?php endforeach ?>
