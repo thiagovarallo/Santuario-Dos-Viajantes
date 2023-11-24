@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cidade = $_POST['cidade_user'];
     $estado = $_POST['estado_user'];
     $cep = $_POST['cep_user'];
-    $pais = $_POST['pais'];
+    $pais = $_POST['pais_user'];
 
     $sql = "UPDATE users SET CPF=:cpf, sexo=:sexo, telefone=:telefone, logadouro=:logadouro, numero=:numero, bairro=:bairro, cidade=:cidade, estado=:estado, cep=:cep, pais=:pais, first_login=1 WHERE email=:email; ";
 

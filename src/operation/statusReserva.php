@@ -37,13 +37,13 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'playerthiago86@gmail.com';
-    $mail->Password   = 'cawhsyiaoazvomqr';
+    $mail->Username   = 'santuariodosviagantes012@gmail.com';
+    $mail->Password   = 'bkogycailkobbgcq';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port       = 465;
     $mail->CharSet = 'utf8';
 
-    $mail->setFrom('playerthiago86@gmail.com', 'Santuário dos Viajantes');
+    $mail->setFrom('santuariodosviagantes012@gmail.com', 'Santuário dos Viajantes');
     $mail->addAddress($email, 'Joe User');
 
     //Content
@@ -70,12 +70,7 @@ try {
     
     <p>Agradecemos por escolher o Santuário dos Viajantes e estamos ansiosos para recebê-lo em breve. Tenha uma viagem segura até aqui!</p>
     
-    <p>Atenciosamente,<p>
-    
-    [Seu Nome]
-    [Seu Cargo]
-    Santuário dos Viajantes
-    [Seus Detalhes de Contato]";
+    ";
 
     $mail->send();
 
