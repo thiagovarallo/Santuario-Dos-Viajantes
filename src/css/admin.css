@@ -21,9 +21,13 @@ body {
 .mobile_menu {
     display: none;
     background: rgb(78,201,253);
-    background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);    display: flex;
+    background: radial-gradient(circle, rgba(78,201,253,1) 16%, rgba(60,134,230,1) 80%);
 }
 
+.mobile_menu li {
+    list-style-type: none;
+
+}
 
 /*nav desktop */
 
@@ -158,11 +162,27 @@ main {
     }
 
     .mobile_menu {
-        display: block;
+        display: flex;
         width: 100vw;
         height: 10vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile_menu ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-around;
+        gap: 1.5rem;
     }
     
+    .mobile_menu a {
+        color: white;
+        text-decoration: none;
+        text-shadow: 1px 0 1px black;
+        font-size: 1.2rem;
+    }
 
 
     main {

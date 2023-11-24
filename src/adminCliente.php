@@ -35,25 +35,29 @@ if ($_SESSION["Role"] == "admin") {
     <?php include_once './components/modalConfirmSave.html' ?>
 
     <nav class="mobile_menu">
-
+        <ul>
+            <a href="/src/adminCliente.php">
+                <li>Usuarios</li>
+            </a>
+            <a href="/src/adminRoom.php">
+                <li>Quartos</li>
+            </a>
+            <a href="/src/adminReserva.php">
+                <li>Reserva</li>
+            </a>
+        </ul>
     </nav>
 
     <aside class="pc_menu">
         <ul>
-            <a href="/src/adminHome.php" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Home</li>
-            </a>
             <a href="/src/adminCliente.php" class="text-decoration-none">
-                <li class="active"><img src="../img/icons/user.svg"> Usuarios</li>
+                <li class="active"><img src="../img/icons/user.svg">Usuarios</li>
             </a>
             <a href="/src/adminRoom.php" class="text-decoration-none">
-                <li><img src="../img/icons/bed.svg" id="bedRoom"> Quartos</li>
+                <li><img src="../img/icons/bed.svg" id="bedRoom">Quartos</li>
             </a>
             <a href="/src/adminReserva.php" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Reserva</li>
-            </a>
-            <a href="#" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Home</li>
+                <li><img src="../img/icons/home.svg">Reserva</li>
             </a>
         </ul>
     </aside>

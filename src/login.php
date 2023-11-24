@@ -27,7 +27,7 @@
             $_SESSION["Id_user"] = $userData["id"];
 
             if ($userData["role"] == "admin") {
-                header( 'Location: ./adminHome.php' );
+                header( 'Location: ./adminReserva.php' );
             } else {
                 header( 'Location: /' );
             }

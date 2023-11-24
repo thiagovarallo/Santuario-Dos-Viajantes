@@ -4,8 +4,8 @@ include_once("../connection.php");
 session_start();
 
 if (!isset($_SESSION["Logged"]) || $_SESSION["Logged"] !== true || !isset($_SESSION["Role"]) || $_SESSION["Role"] == "user") {
-    header("Location: /"); 
-    exit(); 
+    header("Location: /");
+    exit();
 }
 
 if ($_SESSION["Role"] == "admin") {
@@ -23,38 +23,43 @@ if ($_SESSION["Role"] == "admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/admin.css">
-    <script src="./js/navbarAdmin.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./js/confirm.js" defer></script>
 </head>
 
 <body>
-    <?php include_once './components/modalConfirmDelete.html'?>
+    <?php include_once './components/modalConfirmDelete.html' ?>
 
     <?php include_once './components/modalConfirmSave.html' ?>
 
     <nav class="mobile_menu">
-
+        <ul>
+            <a href="/src/adminCliente.php">
+                <li>Usuarios</li>
+            </a>
+            <a href="/src/adminRoom.php">
+                <li>Quartos</li>
+            </a>
+            <a href="/src/adminReserva.php">
+                <li>Reserva</li>
+            </a>
+        </ul>
     </nav>
 
     <aside class="pc_menu">
         <ul>
-            <a href="#" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Home</li>
-            </a>
+
             <a href="/src/adminCliente.php" class="text-decoration-none">
-                <li><img src="../img/icons/user.svg"> usuarios</li>
+                <li><img src="../img/icons/user.svg">Usuarios</li>
             </a>
             <a href="/src/adminRoom.php" class="text-decoration-none">
-                <li class="active"><img src="../img/icons/bed.svg" id="bedRoom"> Quartos</li>
+                <li class="active"><img src="../img/icons/bed.svg" id="bedRoom">Quartos</li>
             </a>
             <a href="/src/adminReserva.php" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Reserva</li>
+                <li><img src="../img/icons/home.svg">Reserva</li>
             </a>
-            <a href="#" class="text-decoration-none">
-                <li><img src="../img/icons/home.svg"> Home</li>
-            </a>
+
         </ul>
     </aside>
 
@@ -93,17 +98,18 @@ if ($_SESSION["Role"] == "admin") {
                         <tr class="coluns_table">
                             <td data-label="Id" class=""> <?= $row["id"] ?> </td>
                             <td data-label="Nome do quarto"><?= $row["name_room"] ?></td>
-                            <td data-label="Descrição" id="room_description"><p>
-                            <?php
-                                $description = $row["description"];
+                            <td data-label="Descrição" id="room_description">
+                                <p>
+                                    <?php
+                                    $description = $row["description"];
 
-                                $words = explode(' ', $description);
+                                    $words = explode(' ', $description);
 
-                                $firt_10_words = implode(' ', array_slice($words, 0, 11));
+                                    $firt_10_words = implode(' ', array_slice($words, 0, 11));
 
-                                echo $firt_10_words;
-                            ?>
-                            </p>
+                                    echo $firt_10_words;
+                                    ?>
+                                </p>
                             </td>
                             <td data-label="Preço"><?= $row["price"] ?></td>
                             <td data-label="Número de adultos"><?= $row["number_adult"] ?></td>
