@@ -45,9 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $num_adult = $_POST["num_adult"];
         $num_children = $_POST["num_children"];
 
+        
 
-        $sql = "INSERT INTO accommodation (email_user, type_room, date_check_in, date_check_out, status, num_adult, num_children, id_user) 
-        VALUES (:email_user, :type_room, :date_check_in, :date_check_out, :status, :num_adult, :num_children, :id_user)";
+        $sql = "INSERT INTO accommodation (email_user, type_room, date_check_in, date_check_out, status, num_adult, num_children, id_user, price_reserva) 
+        VALUES (:email_user, :type_room, :date_check_in, :date_check_out, :status, :num_adult, :num_children, :id_user, :price_reserva)";
 
         try {
             $stmt = $pdo->prepare($sql);
@@ -59,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindValue(':num_adult', $num_adult);
             $stmt->bindValue(':num_children', $num_children);
             $stmt->bindValue(':id_user', $id_user);
+            $stmt->bindValue(':price_reserva', $query["price"]);
 
             $stmt->execute();
 
@@ -71,7 +73,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         header("location: /src/login.php");
     }
+
 }
+
 ?>
 
 <!DOCTYPE html>

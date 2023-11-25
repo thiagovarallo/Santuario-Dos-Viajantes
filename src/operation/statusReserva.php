@@ -28,7 +28,6 @@ $statementReserva->execute();
 
 $reserva = $statementReserva->fetch(PDO::FETCH_ASSOC);
 
-var_dump($reserva);
 
 $mail = new PHPMailer(true);
 
@@ -61,7 +60,7 @@ try {
         <li>Data de Check-out: {$reserva['date_check_out']}</li>
         <li>Número de Hóspedes: Número de adultos {$reserva['num_adult']}, crianças {$reserva['num_children']}</li>
         <li>Tipo de Quarto: {$typeRoom}</li>
-        <li>Tarifa Total: {$reserva['price']}</li>
+        <li>Tarifa Total: {$reserva['price_reserva']}</li>
     </ul>
 
     <p>Lembre-se de que estas informações estão sujeitas a confirmação no momento do check-in. Recomendamos que revise os detalhes da sua reserva para garantir que estejam corretos. Caso haja alguma discrepância ou se precisar de assistência adicional, não hesite em entrar em contato conosco.</p>    
@@ -82,9 +81,8 @@ try {
 
     $statementeReservaUpdate->execute();
 
-    header("Location: " . $_SERVER['HTTP_REFERER'] . "");
+    header("Location: /src/adminReserva.php");
 
-    exit();
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }

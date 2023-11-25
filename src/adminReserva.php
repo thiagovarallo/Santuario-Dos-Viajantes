@@ -84,6 +84,7 @@ if ($_SESSION["Role"] == "admin") {
                         <th>Data check-out</th>
                         <th>Número de adultos</th>
                         <th>Número de crianças</th>
+                        <th>Preço</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
@@ -99,6 +100,7 @@ if ($_SESSION["Role"] == "admin") {
                             <td data-label="Data check-out" style="word-break: break-all;"><?= $row["date_check_out"] ?></td>
                             <td data-label="Número de adultos" style="word-break: break-all;"><?= $row["num_adult"] ?></td>
                             <td data-label="Número de crianças" style="word-break: break-all;"><?= $row["num_children"] ?></td>
+                            <td data-label="Número de crianças" style="word-break: break-all;"><?= $row["price_reserva"] ?></td>
                             <td data-label="Status" style="word-break: break-all; cursor: pointer;" ondblclick="statusReserva('<?= $row['Id_hospedagem'] ?>', '<?= $row['email_user'] ?>', '<?= $row['type_room'] ?>','<?= $row['id_user'] ?>')"><?= $row["status"] ?></td>
                             
                             <td data-label="Ações">
