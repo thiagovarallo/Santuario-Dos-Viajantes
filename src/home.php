@@ -5,9 +5,7 @@ session_start();
 
 $query = $pdo->query("SELECT * FROM type_room;")->fetchAll(PDO::FETCH_ASSOC);
 
-if (empty($_SESSION)) {
-    header("Location: src/login.php");
-} else {
+if ($_SESSION['Logged'] == true ) {
     if ($_SESSION["First_login"] == false) {
         header("Location: src/formulario/insertDataUser.php");
     }
